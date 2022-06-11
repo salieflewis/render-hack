@@ -27,6 +27,8 @@ export const getPosters = gql`
     ) {
       nodes {
         token {
+          collectionAddress
+          tokenId
           image {
             mediaEncoding {
               ... on ImageEncodingTypes {
@@ -37,12 +39,8 @@ export const getPosters = gql`
               }
             }
           }
-          collectionAddress
-          tokenId
         }
       }
     }
   }
 `;
-
-// networks: { chain: MAINNET, network: ETHEREUM }

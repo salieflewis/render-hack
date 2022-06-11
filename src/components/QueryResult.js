@@ -7,8 +7,6 @@ import {
   SimpleGrid,
 } from '@chakra-ui/react';
 
-import User from './User';
-
 const QueryResult = ({
   loading,
   called,
@@ -16,29 +14,33 @@ const QueryResult = ({
   address,
 }) => {
   return (
-    <Box h='100%' border='1px'>
+    <Box
+      h='100%'
+      border='1px'
+      borderColor='gray.100'
+      rounded='lg'
+      m={4}
+    >
       <div>
         {called && data !== undefined && (
-          <Flex>
+          <Flex wrap='wrap' justify='space-evenly'>
             {data.tokens.nodes.map(({ token }) => {
               return (
-                //   <div
-                //     key={`${token.collectionAddress}-${token.tokenId}`}
-                //   >
-                //     <img src={token.metadata.image} />
-                //   </div>
-                <div
+                <Box
+                  m={2}
+                  p={2}
                   key={`${token.collectionAddress}-${token.tokenId}`}
                 >
                   <Image
+                    boxSize='288px'
                     objectFit='cover'
                     src={token.image.mediaEncoding.original}
                   />
                   {console.log(
-                    'data',
+                    'data:',
                     token.image.mediaEncoding.original
                   )}
-                </div>
+                </Box>
               );
             })}
           </Flex>
