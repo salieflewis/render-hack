@@ -25,23 +25,26 @@ const QueryResult = ({
         {called && data !== undefined && (
           <Flex wrap='wrap' justify='space-evenly'>
             {data.tokens.nodes.map(({ token }) => {
-              return (
-                <Box
-                  m={2}
-                  p={2}
-                  key={`${token.collectionAddress}-${token.tokenId}`}
-                >
-                  <Image
-                    boxSize='288px'
-                    objectFit='cover'
-                    src={token.image.mediaEncoding.original}
-                  />
-                  {console.log(
-                    'data:',
-                    token.image.mediaEncoding.original
-                  )}
-                </Box>
-              );
+              if (
+                token.image != null &&
+                token.image.mediaEncoding.__typename !=
+                  'UnsupportedEncodingTypes'
+              )
+                return (
+                  <Box
+                    m={2}
+                    p={2}
+                    key={`${token.collectionAddress}-${token.tokenId}`}
+                  >
+                    <Image
+                      boxSize='288px'
+                      objectFit='cover'
+                      src={
+                        token.image.mediaEncoding.original
+                      }
+                    />
+                  </Box>
+                );
             })}
           </Flex>
         )}
